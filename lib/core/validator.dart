@@ -32,7 +32,7 @@ class Validator {
         continue;
       }
 
-      Logger.success('✅ $flavor valid');
+      Logger.success('$flavor valid');
     }
 
     if (invalidFlavors.isNotEmpty) {

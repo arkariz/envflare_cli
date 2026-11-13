@@ -1,6 +1,14 @@
 # envflare_cli
 
+[![pub package](https://img.shields.io/pub/v/envflare_cli.svg)](https://pub.dev/packages/envflare_cli)
+[![CI](https://github.com/arkariz/envflare_cli/actions/workflows/ci.yml/badge.svg)](https://github.com/arkariz/envflare_cli/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 > A modern CLI tool for managing flavor-based environment configurations in Flutter projects
+
+![envflare in action: create flavors, add a key, validate fails with exit code 1 until every flavor has a value, then passes](doc/demo.gif)
+
+*The output above is what the CLI really prints, replayed with a typing animation. Note that the first `validate` exits with code 1, so the same command can gate a CI job.*
 
 A CLI tool to generate and manage flavor-based environment variable files for Flutter projects. Simplify environment configuration across different build flavors (development, staging, production) with schema validation and automated code generation.
 
@@ -9,7 +17,7 @@ A CLI tool to generate and manage flavor-based environment variable files for Fl
 - 🍦 **Flavor Management** — Create, remove, and list environment flavors with ease
 - 🔐 **Schema-Based Variables** — Define environment variables in a centralized schema file
 - 📝 **Environment Operations** — Add, remove, set, and manage variables per flavor
-- ✅ **Sync & Validate** — Keep all flavors consistent and validate configurations
+- ✅ **Sync & Validate** — Keep all flavors consistent and validate configurations; `validate` exits non-zero on failure, so it works as a CI gate
 - 🧙‍♂️ **Interactive Wizard** — Step-by-step guided setup for fast onboarding
 - 💻 **Developer-Friendly** — Intuitive CLI with helpful error messages
 - 📋 **Code Generation** — Generate type-safe Dart code from configuration files using `envied`
@@ -21,6 +29,7 @@ A CLI tool to generate and manage flavor-based environment variable files for Fl
 - [Installation](#-installation)
 - [Usage](#-usage)
 - [Example Workflows](#-example-workflows)
+- [Using it in CI](#-using-it-in-ci)
 - [Project Structure](#-project-structure)
 - [Security](#-security)
 - [Contributing](#-contributing)
@@ -217,6 +226,16 @@ envflare set DEBUG_MODE false --flavor prod
 envflare generate
 ```
 
+## 🔁 Using it in CI
+
+Every failed command (`validate`, an unknown command, a missing project, ...) exits with a non-zero code, so a pipeline stops on a half-configured environment instead of building with empty values:
+
+```yaml
+# .github/workflows/ci.yml
+- run: dart pub global activate envflare_cli
+- run: envflare validate   # fails the job if any flavor misses a key or has an empty value
+```
+
 ## 📁 Project Structure
 
 After initialization, your project will have the following structure:
@@ -283,10 +302,18 @@ Contributions are welcome! To contribute:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+Before opening a PR, run the checks CI runs:
+
+```bash
+dart pub get
+dart analyze
+dart test   # the tests change the working directory, so files run one at a time (see dart_test.yaml)
+```
+
 ## 🐛 Issues & Support
 
-- **Found a bug?** [Report it on GitHub](https://github.com/yourname/envflare_cli/issues)
-- **Have a feature request?** [Create an issue](https://github.com/yourname/envflare_cli/issues)
+- **Found a bug?** [Report it on GitHub](https://github.com/arkariz/envflare_cli/issues)
+- **Have a feature request?** [Create an issue](https://github.com/arkariz/envflare_cli/issues)
 - **Questions?** Feel free to open a discussion
 
 ## 📄 License

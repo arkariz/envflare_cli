@@ -13,7 +13,7 @@ class EnvAddCommand implements BaseCommand {
   @override
   Future<void> execute(args) async {
     if (args.arguments.isEmpty) {
-      throw CliException('Usage: envflare_cli add <KEY>');
+      throw CliException('Usage: envflare add <KEY>');
     }
     Schema.load();
 

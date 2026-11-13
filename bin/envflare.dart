@@ -1,5 +1,3 @@
 import 'package:envflare_cli/cli/index.dart';
 
-void main(List<String> args) {
-  runCLI(args);
-}
+Future<void> main(List<String> args) => runCLI(args);

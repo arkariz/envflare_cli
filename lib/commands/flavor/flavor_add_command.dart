@@ -14,7 +14,7 @@ class FlavorAddCommand implements BaseCommand {
   @override
   Future<void> execute(args) async {
     if (args.arguments.isEmpty) {
-      throw CliException('Usage: envflare_cli flavor add <NAME>');
+      throw CliException('Usage: envflare flavor add <NAME>');
     }
 
     final name = args.arguments.first;
