@@ -45,6 +45,15 @@ Keep code formatted with:
 dart format .
 ```
 
+### Running the tests
+
+```bash
+dart analyze
+dart test
+```
+
+`test/core_test.dart` covers the core logic in-process. `test/cli_e2e_test.dart` runs the real CLI as a subprocess and checks printed output and exit codes. Both work inside a throwaway project directory, and because the working directory is process-wide, `dart_test.yaml` runs test files one at a time. Add a regression test with every bug fix.
+
 ### Adding or changing commands
 
 1. Add a new command under `lib/commands/`.
