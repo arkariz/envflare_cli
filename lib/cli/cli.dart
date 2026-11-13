@@ -1,7 +1,7 @@
 import 'package:envflare_cli/cli/index.dart';
 import 'package:envflare_cli/commands/index.dart';
 
-void runCLI(List<String> args) {
+Future<void> runCLI(List<String> args) {
   final registry = CommandRegistry()
     ..register(InitCommand())
     ..register(WizardCommand())
@@ -14,5 +14,5 @@ void runCLI(List<String> args) {
     ..register(EnvGenerateCommand())
     ..register(FlavorCommand());
 
-  CliRunner(registry).run(args);
+  return CliRunner(registry).run(args);
 }

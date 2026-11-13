@@ -13,7 +13,7 @@ class FlavorRemoveCommand implements BaseCommand {
   @override
   Future<void> execute(args) async {
     if (args.arguments.isEmpty) {
-      throw CliException('Usage: envflare_cli flavor remove <NAME>');
+      throw CliException('Usage: envflare flavor remove <NAME>');
     }
 
     final name = args.arguments.first;

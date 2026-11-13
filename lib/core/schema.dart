@@ -59,7 +59,9 @@ class Schema {
     final file = File(path);
     final lines = file.readAsLinesSync();
     final filteredLines = lines..removeWhere((l) => l.trim() == key);
-    file.writeAsStringSync(filteredLines.join('\n'));
+    // Keep the trailing newline: addKey appends "KEY\n", so without it the next
+    // key would be glued onto the last remaining one ("API_URL" + "TOKEN").
+    file.writeAsStringSync(filteredLines.isEmpty ? '' : '${filteredLines.join('\n')}\n');
   }
 
   /// Creates the .env.schema file if it doesn't exist.

@@ -14,7 +14,7 @@ class EnvSetCommand implements BaseCommand {
   @override
   Future<void> execute(args) async {
     if (args.arguments.length < 2) {
-      throw CliException('Usage: envflare_cli set <KEY> <VALUE>');
+      throw CliException('Usage: envflare set <KEY> <VALUE>');
     }
 
     final key = args.arguments[0];

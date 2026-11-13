@@ -1,0 +1,4 @@
+# The library reads and writes relative paths (.envs/, .env.schema, .envflare_cli.json),
+# so tests change the working directory into a sandbox. That is process-wide state,
+# which means test files must not run in parallel.
+concurrency: 1

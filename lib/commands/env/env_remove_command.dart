@@ -15,7 +15,7 @@ class EnvRemoveCommand implements BaseCommand {
     Schema.load();
 
     if (args.arguments.isEmpty) {
-      throw CliException('Usage: envflare_cli remove <KEY>');
+      throw CliException('Usage: envflare remove <KEY>');
     }
 
     final key = args.arguments.first;

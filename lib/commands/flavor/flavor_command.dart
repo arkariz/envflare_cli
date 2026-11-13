@@ -26,14 +26,14 @@ class FlavorCommand implements BaseCommand {
     final sub = args.command;
 
     if (sub == null || args['help']) {
-      Logger.plain('Usage: envflare_cli flavor <add|remove|list> [options]');
+      Logger.plain('Usage: envflare flavor <add|remove|list> [options]');
       Logger.plain('');
       Logger.plain('Subcommands:');
       Logger.plain('  add <NAME>    Add a new flavor');
       Logger.plain('  remove <NAME>  Remove a flavor');
       Logger.plain('  list          List all flavors');
       Logger.plain('');
-      Logger.plain('Use "envflare_cli flavor <subcommand> --help" for more information.');
+      Logger.plain('Use "envflare flavor <subcommand> --help" for more information.');
       return;
     }
 
@@ -42,19 +42,19 @@ class FlavorCommand implements BaseCommand {
       switch (sub.name) {
         case 'add':
           FlavorAddCommand().configure(helpParser);
-          Logger.plain('Usage: envflare_cli flavor add <NAME> [options]');
+          Logger.plain('Usage: envflare flavor add <NAME> [options]');
           Logger.plain('');
           Logger.plain(helpParser.usage);
           return;
         case 'remove':
           FlavorRemoveCommand().configure(helpParser);
-          Logger.plain('Usage: envflare_cli flavor remove <NAME> [options]');
+          Logger.plain('Usage: envflare flavor remove <NAME> [options]');
           Logger.plain('');
           Logger.plain(helpParser.usage);
           return;
         case 'list':
           FlavorListCommand().configure(helpParser);
-          Logger.plain('Usage: envflare_cli flavor list [options]');
+          Logger.plain('Usage: envflare flavor list [options]');
           Logger.plain('');
           Logger.plain(helpParser.usage);
           return;
